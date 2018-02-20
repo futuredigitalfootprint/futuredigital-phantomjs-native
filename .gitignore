@@ -1,0 +1,6 @@
+*.nupkg
+*.dll
+*.pdb
+*.dylib
+*.so
+*.zip
