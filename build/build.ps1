@@ -27,6 +27,7 @@ $linuxDirectory = Join-Path $packageDirectory "runtimes\linux-x64\native"
 $osxDirectory = Join-Path $packageDirectory "runtimes\osx\native"
 $monoDirectory = Join-Path $packageDirectory "mono"
 
+Write-Output "Creating package folders..."
 if ( -Not (Test-Path $winx86Directory) ) {
     mkdir -fo $winx86Directory > $null
 }
@@ -48,6 +49,7 @@ if ( -Not (Test-Path $monoDirectory) ) {
 }
 
 try {
+  Write-Output "Native binaries downloading..."
   Write-Verbose "Downloading $nativeWindowsUrl..."
   Invoke-WebRequest $nativeWindowsUrl -OutFile (Join-Path $winx86Directory "phantomjs.exe")
   Write-Verbose "Downloading $nativeLinuxUrl..."
@@ -61,14 +63,18 @@ try {
   exit;
 }
 
+Write-Output "Copying items to package..."
 Copy-Item (Join-Path $winx86Directory "phantomjs.exe") -Destination $winx64Directory
-Copy-Item ..\src\FutureDigital.PhantomJS.NativeBinaries.dll.config -Destination $monoDirectory
-Copy-Item ..\src\FutureDigital.PhantomJS.NativeBinaries.nuspec -Destination $packageDirectory
+Copy-Item (Join-Path (Split-Path $PSScriptRoot) src\FutureDigital.PhantomJS.NativeBinaries.dll.config) -Destination $monoDirectory
+Copy-Item (Join-Path (Split-Path $PSScriptRoot) src\FutureDigital.PhantomJS.NativeBinaries.nuspec) -Destination $packageDirectory
 
 try {
+  Write-Output "Creating package..."
   nuget Pack (Join-Path $packageDirectory "FutureDigital.PhantomJS.NativeBinaries.nuspec") -Version $version$versionSuffix -NoPackageAnalysis
   Move-Item "FutureDigital.PhantomJS.NativeBinaries.$version$versionSuffix.nupkg" (Split-Path $packageDirectory)
 } catch {
   Write-Error "Failed to create nuget package $($_.Exception.Message)"
   $host.SetShouldExit(3)
 }
+
+Write-Output "Build completed..."
