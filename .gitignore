@@ -4,3 +4,5 @@
 *.dylib
 *.so
 *.zip
+artifacts
+*.code-workspace

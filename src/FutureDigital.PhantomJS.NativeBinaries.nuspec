@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>FutureDigital.PhantomJS.NativeBinaries</id>
+    <version>0.0.1</version>
+    <authors>Tommy Long</authors>
+    <owners>Future Digital Footprint</owners>
+    <licenseUrl>https://raw.githubusercontent.com/futuredigitalfootprint/futuredigital-phantomjs-native/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/futuredigitalfootprint/futuredigital-phantomjs-native</projectUrl>
+    <iconUrl>https://github.com/futuredigitalfootprint/futuredigital-phantomjs/master/fdf-phantomjs-logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Native binaries for PhantomJS</description>
+  </metadata>
+</package>
