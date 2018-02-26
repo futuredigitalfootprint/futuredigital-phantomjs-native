@@ -4,7 +4,7 @@ branches:
   - master
 skip_tags: true
 build_script:
-- ps: >-
+- ps: |
     $pre = $true
     if (($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null) -and ($env:APPVEYOR_REPO_BRANCH -eq "master"))
     {
