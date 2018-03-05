@@ -15,4 +15,8 @@ build_script:
 test: off
 artifacts:
 - path: artifacts/*.nupkg
-deploy: off
+deploy:
+- provider: NuGet
+  api_key:
+    secure: cKHl2GU+KJ2ieoiNDAjw7eaCxYlPkrByEA1wOMgM/AHmS/kfLgUOXnnzeOuTfczV
+  skip_symbols: true
